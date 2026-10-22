@@ -6,7 +6,7 @@
 站立 → 单腿逆运动学 → 摆动轨迹 → 开环 trot → 速度跟踪 → 平衡与转向
 ```
 
-完整的原理推导、参数整定手册与实测数据见 **[`../docs/GO2_CLASSICAL_GAIT.md`](../docs/GO2_CLASSICAL_GAIT.md)**。
+完整的原理推导、参数整定手册与实测数据见 **[../docs/GO2_CLASSICAL_GAIT.md](../docs/GO2_CLASSICAL_GAIT.md)**。
 
 ## 依赖
 

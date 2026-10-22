@@ -4,8 +4,8 @@
 > 本仓库默认使用 **Go2 + URDF**（`UNITREE_ROS_DIR=~/unitree_ros`，可用环境变量覆盖）。
 >
 > 相关文档：
-> - [`GO2_TRAINING_METRICS.md`](./GO2_TRAINING_METRICS.md)：RL 任务说明、训练指标与曲线判读
-> - [`GO2_CLASSICAL_GAIT.md`](./GO2_CLASSICAL_GAIT.md)：**传统步态控制路线**（MuJoCo，不依赖 Isaac/ROS2）
+> - [GO2_TRAINING_METRICS.md](./GO2_TRAINING_METRICS.md)：RL 任务说明、训练指标与曲线判读
+> - [GO2_CLASSICAL_GAIT.md](./GO2_CLASSICAL_GAIT.md)：**传统步态控制路线**（MuJoCo，不依赖 Isaac/ROS2）
 
 ---
 
@@ -182,7 +182,7 @@ tensorboard --logdir logs/rsl_rl/unitree_go2_velocity
 
 重点看 `Episode_Reward/track_lin_vel_xy`（越大越好）、`Metrics/base_velocity/error_vel_xy`（越小越好）、`Episode_Termination/base_contact`。
 
-> 📘 任务目标、全部指标的含义、曲线判读标准、训练结束后的数据保留、异常排查，见补充文档 [`GO2_TRAINING_METRICS.md`](./GO2_TRAINING_METRICS.md)。
+> 📘 任务目标、全部指标的含义、曲线判读标准、训练结束后的数据保留、异常排查，见补充文档 [GO2_TRAINING_METRICS.md](./GO2_TRAINING_METRICS.md)。
 
 ### Step 5 · 回放 + 导出 ONNX
 

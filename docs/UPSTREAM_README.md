@@ -1,5 +1,8 @@
 # Unitree RL Lab
 
+> **本文件是上游仓库 README 的存档**，其中的 gif 图片未随仓库提供，链接可能失效。
+> 最新内容请见：<https://github.com/unitreerobotics/unitree_rl_lab>
+
 [![IsaacSim](https://img.shields.io/badge/IsaacSim-5.1.0-silver.svg)](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html)
 [![Isaac Lab](https://img.shields.io/badge/IsaacLab-2.3.0-silver)](https://isaac-sim.github.io/IsaacLab)
 [![License](https://img.shields.io/badge/license-Apache2.0-yellow.svg)](https://opensource.org/license/apache-2-0)

@@ -15,9 +15,9 @@
 | 模块 | 内容 | 入口 |
 |---|---|---|
 | **强化学习训练** | 基于 IsaacLab + rsl-rl PPO 的四足速度跟踪环境（Go2 / H1 / G1 等） | `source/unitree_rl_lab/`、`scripts/rsl_rl/` |
-| **传统步态控制** | 不依赖 Isaac/ROS2，纯 `python + mujoco`：站立 → IK → 摆线 → trot → Raibert → 平衡转向 | [`classical_gait/`](./classical_gait/) |
+| **传统步态控制** | 不依赖 Isaac/ROS2，纯 `python + mujoco`：站立 → IK → 摆线 → trot → Raibert → 平衡转向 | [classical_gait/](./classical_gait/) |
 | **部署运行时** | C++ FSM + ONNX Runtime + unitree_sdk2（DDS），可跑 sim2sim 与真机 | `deploy/` |
-| **中文文档** | 安装跑通、训练指标判读、传统控制原理与整定手册 | [`docs/`](./docs/) |
+| **中文文档** | 安装跑通、训练指标判读、传统控制原理与整定手册 | [docs/](./docs/) |
 
 ---
 
@@ -25,12 +25,12 @@
 
 | 文档 | 内容 | 适合谁 |
 |---|---|---|
-| [`docs/GO2_GUIDE.md`](./docs/GO2_GUIDE.md) | 环境安装、模型文件、训练/回放/导出 ONNX、sim2sim、sim2real 全流程 | 想跑通 RL 训练的人 |
-| [`docs/GO2_TRAINING_METRICS.md`](./docs/GO2_TRAINING_METRICS.md) | 任务是什么、每个指标的含义、曲线判读、异常排查、下一步学习路线 | 训练中看不懂曲线的人 |
-| [`docs/GO2_CLASSICAL_GAIT.md`](./docs/GO2_CLASSICAL_GAIT.md) | 单腿 FK/IK 推导、摆线轨迹、trot 相位、Raibert 落脚点、姿态/偏航反馈 | 想打控制基础的人 |
-| [`docs/UPSTREAM_README.md`](./docs/UPSTREAM_README.md) | 上游仓库原始 README（存档） | 查阅上游信息 |
+| [docs/GO2_GUIDE.md](./docs/GO2_GUIDE.md) | 环境安装、模型文件、训练/回放/导出 ONNX、sim2sim、sim2real 全流程 | 想跑通 RL 训练的人 |
+| [docs/GO2_TRAINING_METRICS.md](./docs/GO2_TRAINING_METRICS.md) | 任务是什么、每个指标的含义、曲线判读、异常排查、下一步学习路线 | 训练中看不懂曲线的人 |
+| [docs/GO2_CLASSICAL_GAIT.md](./docs/GO2_CLASSICAL_GAIT.md) | 单腿 FK/IK 推导、摆线轨迹、trot 相位、Raibert 落脚点、姿态/偏航反馈 | 想打控制基础的人 |
+| [docs/UPSTREAM_README.md](./docs/UPSTREAM_README.md) | 上游仓库原始 README（存档） | 查阅上游信息 |
 
-**建议阅读顺序**：`GO2_CLASSICAL_GAIT.md` §0 → §0.5 → 跑 `classical_gait/` → 再回头看 §3 数学 → 想训 RL 时读 `GO2_TRAINING_METRICS.md` → 部署前读 `GO2_GUIDE.md` Step 6/7。
+**建议阅读顺序**：[GO2_CLASSICAL_GAIT.md](./docs/GO2_CLASSICAL_GAIT.md) §0 → §0.5 → 跑 [classical_gait/](./classical_gait/) → 再回头看 §3 数学 → 想训 RL 时读 [GO2_TRAINING_METRICS.md](./docs/GO2_TRAINING_METRICS.md) → 部署前读 [GO2_GUIDE.md](./docs/GO2_GUIDE.md) Step 6/7。
 
 ---
 
@@ -103,7 +103,7 @@ python 05_raibert_walk.py
 python 06_balance_turn.py --vx 0.3 --wz 0.4
 ```
 
-需要图形界面时加 `--viewer --realtime`。详见 [`classical_gait/README.md`](./classical_gait/README.md)。
+需要图形界面时加 `--viewer --realtime`。详见 [classical_gait/README.md](./classical_gait/README.md)。
 
 ### 5. 部署（可选）
 
@@ -113,7 +113,7 @@ mkdir -p build && cd build && cmake .. && make -j
 ./go2_ctrl            # 真机：./go2_ctrl --network eth0
 ```
 
-依赖 `unitree_sdk2`、`yaml-cpp`、`boost`、`eigen`、`spdlog`、`fmt`，详见 `docs/GO2_GUIDE.md`。
+依赖 `unitree_sdk2`、`yaml-cpp`、`boost`、`eigen`、`spdlog`、`fmt`，详见 [docs/GO2_GUIDE.md](./docs/GO2_GUIDE.md)。
 
 ---
 
@@ -153,8 +153,8 @@ unitree_rl_lab_egg/
 | `No conda environment activated` | 先 `conda activate env_isaaclab`，脚本依赖 `CONDA_PREFIX` |
 | 训练 OOM / 卡死 | 降低 `--num_envs`（4096 默认值不适配 8 GB 显存） |
 | URDF 转 USD 时出现 `Head_* visuals Unresolved reference` | 仅显示层警告，可忽略，物理与训练不受影响 |
-| 曲线怎么读、什么时候该停 | 见 [`docs/GO2_TRAINING_METRICS.md`](./docs/GO2_TRAINING_METRICS.md) |
-| 想先学传统控制 | 见 [`docs/GO2_CLASSICAL_GAIT.md`](./docs/GO2_CLASSICAL_GAIT.md) |
+| 曲线怎么读、什么时候该停 | 见 [docs/GO2_TRAINING_METRICS.md](./docs/GO2_TRAINING_METRICS.md) |
+| 想先学传统控制 | 见 [docs/GO2_CLASSICAL_GAIT.md](./docs/GO2_CLASSICAL_GAIT.md) |
 
 ---
 

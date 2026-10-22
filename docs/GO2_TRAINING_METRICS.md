@@ -1,8 +1,8 @@
 # Go2 训练补充文档：任务说明与效果判读
 
-> 配套文档：[`GO2_GUIDE.md`](./GO2_GUIDE.md)（安装、跑通、部署）
+> 配套文档：[GO2_GUIDE.md](./GO2_GUIDE.md)（安装、跑通、部署）
 > 本文档只回答三个问题：**这个任务在学什么？怎么看它学得好不好？训练结束后数据还在吗？**
-> 想先学传统控制：见 [`GO2_CLASSICAL_GAIT.md`](./GO2_CLASSICAL_GAIT.md)
+> 想先学传统控制：见 [GO2_CLASSICAL_GAIT.md](./GO2_CLASSICAL_GAIT.md)
 
 ---
 
@@ -261,7 +261,7 @@ A：可以，但要注意观测/动作定义必须与你的环境一致，否则
 A：摩擦/质量/延迟/关节阻尼差异。解决办法是加强域随机化重训，而不是改 PD 去“抬”仿真。
 
 **Q：我该先学 RL 还是先学传统控制？**
-A：想打基础、看懂“为什么能走”，先看 [`GO2_CLASSICAL_GAIT.md`](./GO2_CLASSICAL_GAIT.md)；
+A：想打基础、看懂“为什么能走”，先看 [GO2_CLASSICAL_GAIT.md](./GO2_CLASSICAL_GAIT.md)；
 想快速拿到能跑的策略，直接照着本文档训。两条路最后都会汇到同一个部署接口上。
 
 ---
@@ -270,7 +270,7 @@ A：想打基础、看懂“为什么能走”，先看 [`GO2_CLASSICAL_GAIT.md`
 
 ### 8.1 先把这一套用熟（1~2 周）
 
-1. **奖励设计实验**：按 [`GO2_GUIDE.md`](./GO2_GUIDE.md) 第 6 节的三个实验做消融，
+1. **奖励设计实验**：按 [GO2_GUIDE.md](./GO2_GUIDE.md) 第 6 节的三个实验做消融，
    每个只改一个变量，用 TensorBoard 同图对比；
 2. **域随机化实验**：把摩擦范围拉大（如 0.2~1.5），看 `error_vel_xy` 变差多少、
    回放是否更稳；这直接决定 sim2real 成败；
@@ -300,7 +300,7 @@ A：想打基础、看懂“为什么能走”，先看 [`GO2_CLASSICAL_GAIT.md`
 | 复杂地形 / 越野 | 打开 `COBBLESTONE_ROAD_CFG` 里的随机粗糙、台阶、斜坡地形重训 |
 | 动作跟踪（mimic） | 本仓库 `tasks/mimic/`（G1 跳舞/风格动作） |
 | 多机器人 / 鲁棒性 | 随机推力、质量变化、电机故障注入 |
-| 传统控制对照 | [`GO2_CLASSICAL_GAIT.md`](./GO2_CLASSICAL_GAIT.md) 的 trot 控制器 |
+| 传统控制对照 | [GO2_CLASSICAL_GAIT.md](./GO2_CLASSICAL_GAIT.md) 的 trot 控制器 |
 
 ### 8.5 学习资源
 
