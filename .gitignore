@@ -82,3 +82,5 @@ datasets
 *.avi
 .venv/
 **/classical_gait/__pycache__/
+
+.zread/

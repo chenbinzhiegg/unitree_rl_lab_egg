@@ -15,12 +15,11 @@
 from __future__ import annotations
 
 import argparse
-import time
 
 import numpy as np
 
 from gait import TrotController, TrotParams
-from go2_model import Go2, try_viewer
+from go2_model import Go2, keep_viewer_open, sync_viewer, try_viewer
 
 
 def main() -> int:
@@ -52,9 +51,7 @@ def main() -> int:
         q_des = robot.solve(ctrl.targets(t))          # 阶段4：roll=pitch=vx_meas=0
         robot.apply_pd(q_des)
         robot.step()
-        if viewer is not None:
-            viewer.sync()
-            time.sleep(dt)
+        sync_viewer(viewer, dt)
 
         if t > 1.0:                                   # 跳过起步瞬态
             speeds.append(robot.velocity_in_heading()[0])
@@ -79,8 +76,7 @@ def main() -> int:
     print(f"验收: {'通过 ✅' if ok else '未通过 ❌（可先降 vx 或调大 duty）'}")
 
     if viewer is not None:
-        input("按回车关闭 viewer ...")
-        viewer.close()
+        keep_viewer_open(viewer, 0 if ok else 1)
     return 0 if ok else 1
 
 

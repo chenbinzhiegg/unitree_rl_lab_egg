@@ -15,12 +15,11 @@
 from __future__ import annotations
 
 import argparse
-import time
 
 import numpy as np
 
 from gait import TrotController, TrotParams
-from go2_model import FOOT_RADIUS, HOME_HEIGHT, HOME_LEG, LEGS, Go2, try_viewer
+from go2_model import FOOT_RADIUS, HOME_HEIGHT, HOME_LEG, LEGS, Go2, keep_viewer_open, sync_viewer, try_viewer
 
 
 def main() -> int:
@@ -63,9 +62,7 @@ def main() -> int:
 
         robot.apply_pd(q_des)
         robot.step()
-        if viewer is not None:
-            viewer.sync()
-            time.sleep(dt)
+        sync_viewer(viewer, dt)
 
         foot = robot.foot_pos(args.leg)
         zs.append(foot[2])
@@ -93,8 +90,7 @@ def main() -> int:
     print(f"验收: {'通过 ✅' if (height_ok and ground_ok) else '未通过 ❌'}")
 
     if viewer is not None:
-        input("按回车关闭 viewer ...")
-        viewer.close()
+        keep_viewer_open(viewer, 0 if (height_ok and ground_ok) else 1)
     return 0 if (height_ok and ground_ok) else 1
 
 

@@ -17,6 +17,8 @@
 from __future__ import annotations
 
 import os
+import sys
+import time
 
 import mujoco
 import numpy as np
@@ -68,6 +70,42 @@ def try_viewer(model: mujoco.MjModel, data: mujoco.MjData):
     except Exception as exc:  # pragma: no cover - 依赖本机图形环境
         print(f"[warn] 无法打开 viewer（{exc}），改为无界面运行")
         return None
+
+
+def sync_viewer(viewer, dt: float) -> None:
+    """同步一次 viewer，并按 dt 节流到实时速度。
+
+    没有 viewer 时什么都不做。用户关闭窗口时抛出 SystemExit(0)，让脚本正常收尾。
+    """
+    if viewer is None:
+        return
+    if not viewer.is_running():
+        raise SystemExit(0)
+    viewer.sync()
+    time.sleep(dt)
+
+
+def keep_viewer_open(viewer, exit_code: int = 0) -> None:
+    """仿真结束后保持窗口，直到用户关闭。
+
+    MuJoCo 的 GLFW viewer 在某些显卡驱动上销毁 GL 上下文时会段错误（exit 139），
+    因此先尝试正常 close，随后直接 os._exit，保证返回码干净。
+    """
+    if viewer is None:
+        return
+    try:
+        while viewer.is_running():
+            viewer.sync()
+            time.sleep(0.02)
+    except KeyboardInterrupt:
+        pass
+    try:
+        viewer.close()
+    except Exception:
+        pass
+    sys.stdout.flush()
+    sys.stderr.flush()
+    os._exit(exit_code)
 
 
 class Go2:
